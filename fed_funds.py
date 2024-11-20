@@ -1,10 +1,11 @@
 import requests
+from dotenv import load_dotenv
+from os import getenv
 
-# Replace 'YOUR_API_KEY' with your actual FRED API key
-FRED_API_KEY = ''
+load_dotenv()
 
 def fetch_federal_funds_rate():
-    api_url = f'https://api.stlouisfed.org/fred/series/observations?series_id=DFF&api_key={FRED_API_KEY}&file_type=json'
+    api_url = f'https://api.stlouisfed.org/fred/series/observations?series_id=DFF&api_key={getenv("FRED_API_KEY")}&file_type=json'
     try:
         response = requests.get(api_url)
         response.raise_for_status()
